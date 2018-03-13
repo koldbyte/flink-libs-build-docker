@@ -19,7 +19,7 @@ RUN cd /opt/flink \
     && cd flink-dist \
     && mvn clean install -Pinclude-kinesis -DskipTests -Dhadoop.version=$HADOOP_VERSION \
     # Cleanup
-    && rm -rf "/opt/flink/release-$FLINK_VERSION.tar.gz"
+    && rm -rf "/opt/flink/release-$FLINK_VERSION.tar.gz" \
     && echo "!!BUILD DONE!!"
     
 ENTRYPOINT ["tail", "-f", "/dev/null"]
