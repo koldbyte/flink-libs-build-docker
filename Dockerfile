@@ -15,9 +15,9 @@ RUN cd /opt/flink \
     && tar -xzf "release-$FLINK_VERSION.tar.gz" \
     # Build
     && cd "flink-release-$FLINK_VERSION" \
-    && mvn clean install -DskipTests -Dhadoop.version=$HADOOP_VERSION \
+    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION \
     && cd flink-dist \
-    && mvn clean install -Pinclude-kinesis -DskipTests -Dhadoop.version=$HADOOP_VERSION \
+    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION \
     # Cleanup
     && rm -rf "/opt/flink/release-$FLINK_VERSION.tar.gz" \
     && echo "!!BUILD DONE!!"
