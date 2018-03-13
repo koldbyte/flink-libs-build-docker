@@ -7,9 +7,8 @@ LABEL description="Image for building libraries including the optional connector
 ENV FLINK_VERSION=1.4.2 \
     HADOOP_VERSION=2.7.3
 
-VOLUME /opt/flink/
-
-RUN cd /opt/flink \
+RUN mkdir /opt/flink \
+    && cd /opt/flink \
     # Download the Flink release
     && curl -L -O "https://github.com/apache/flink/archive/release-$FLINK_VERSION.tar.gz" \
     && tar -xzf "release-$FLINK_VERSION.tar.gz" \
@@ -23,5 +22,7 @@ RUN cd /opt/flink \
     && rm -rf "/opt/flink/release-$FLINK_VERSION.tar.gz" \
     && rm -rf /root/.m2 \
     && echo "!!BUILD DONE!!"
-    
+
+VOLUME /opt/flink/
+
 ENTRYPOINT ["tail", "-f", "/dev/null"]
