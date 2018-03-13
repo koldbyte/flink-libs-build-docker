@@ -4,7 +4,7 @@ LABEL maintainer="Bhaskar Divya <bhaskar.divya007@gmail.com>"
 LABEL version="1.0"
 LABEL description="Image for building libraries including the optional connectors available in Flink"
 
-ENV FLINK_VERSION=1.4.2 \
+ENV FLINK_VERSION=1.4.1 \
     HADOOP_VERSION=2.7.3
 
 VOLUME /opt/flink/
