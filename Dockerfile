@@ -15,11 +15,13 @@ RUN cd /opt/flink \
     && tar -xzf "release-$FLINK_VERSION.tar.gz" \
     # Build
     && cd "flink-release-$FLINK_VERSION" \
-    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION \
+    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION -q \
     && cd flink-dist \
-    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION \
+    && mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true -Pinclude-kinesis -Dhadoop.version=$HADOOP_VERSION -q \
+    && mv /root/.m2/repository/org/apache/flink /opt/flink/flink-libs \
     # Cleanup
     && rm -rf "/opt/flink/release-$FLINK_VERSION.tar.gz" \
+    && rm -rf /root/.m2 \
     && echo "!!BUILD DONE!!"
     
 ENTRYPOINT ["tail", "-f", "/dev/null"]
