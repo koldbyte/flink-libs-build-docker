@@ -1,6 +1,6 @@
 FROM maven:3.5.3-jdk-8-alpine
 
-LABEL maintainer="Bhaskar Divya <bhaskar.divya007@gmail.com>"
+LABEL maintainer="Bhaskar Divya"
 LABEL version="1.0"
 LABEL description="Image for building libraries including the optional connectors available in Flink"
 
